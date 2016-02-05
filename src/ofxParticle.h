@@ -4,8 +4,8 @@
 
 class ofxParticle {
  public:
-  ofxParticle(float mass);
-  void update(double t);
+	 static std::shared_ptr<ofxParticle> make(float mass);
+	 void update(double t);
   void setMass(float mass);
   void makeFixed();
   void makeFree();
@@ -24,7 +24,8 @@ class ofxParticle {
   void reset();  
   void clearForces();
 protected:
-  ofVec3f mPosition;
+	ofxParticle(float mass);
+	ofVec3f mPosition;
   ofVec3f mVelocity;
   ofVec3f mForces;
   float mMass;

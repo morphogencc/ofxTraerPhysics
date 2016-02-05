@@ -1,4 +1,4 @@
-#include "stdafx.h"
+
 #include "ofxScalarForce.h"
 
 ofxScalarForce::ofxScalarForce(float f) : ofxForce(f) {

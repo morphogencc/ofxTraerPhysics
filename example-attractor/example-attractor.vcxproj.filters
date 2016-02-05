@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<ClCompile Include="src\ofApp.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="src\main.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxTraerPhysics\src\ofxAttractorForce.cpp">
+			<Filter>addons\ofxTraerPhysics\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxTraerPhysics\src\ofxEulerIntegrator.cpp">
+			<Filter>addons\ofxTraerPhysics\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxTraerPhysics\src\ofxFormConstantForce.cpp">
+			<Filter>addons\ofxTraerPhysics\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxTraerPhysics\src\ofxModifiedEulerIntegrator.cpp">
+			<Filter>addons\ofxTraerPhysics\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxTraerPhysics\src\ofxOrbitalForce.cpp">
+			<Filter>addons\ofxTraerPhysics\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxTraerPhysics\src\ofxParticle.cpp">
+			<Filter>addons\ofxTraerPhysics\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxTraerPhysics\src\ofxParticleSystem.cpp">
+			<Filter>addons\ofxTraerPhysics\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxTraerPhysics\src\ofxPerlinForce.cpp">
+			<Filter>addons\ofxTraerPhysics\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxTraerPhysics\src\ofxPropForce.cpp">
+			<Filter>addons\ofxTraerPhysics\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxTraerPhysics\src\ofxRotationalForce.cpp">
+			<Filter>addons\ofxTraerPhysics\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxTraerPhysics\src\ofxRungeKuttaIntegrator.cpp">
+			<Filter>addons\ofxTraerPhysics\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxTraerPhysics\src\ofxScalarForce.cpp">
+			<Filter>addons\ofxTraerPhysics\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxTraerPhysics\src\Perlin.cpp">
+			<Filter>addons\ofxTraerPhysics\src</Filter>
+		</ClCompile>
+	</ItemGroup>
+	<ItemGroup>
+		<Filter Include="src">
+			<UniqueIdentifier>{d8376475-7454-4a24-b08a-aac121d3ad6f}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons">
+			<UniqueIdentifier>{71834F65-F3A9-211E-73B8-DC85}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxTraerPhysics">
+			<UniqueIdentifier>{AB5DA25F-2502-928C-488D-A157}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxTraerPhysics\src">
+			<UniqueIdentifier>{DDCD5548-6906-4D4A-2EFB-F4DC}</UniqueIdentifier>
+		</Filter>
+	</ItemGroup>
+	<ItemGroup>
+		<ClInclude Include="src\ofApp.h">
+			<Filter>src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxTraerPhysics\src\ofxAttractorForce.h">
+			<Filter>addons\ofxTraerPhysics\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxTraerPhysics\src\ofxEulerIntegrator.h">
+			<Filter>addons\ofxTraerPhysics\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxTraerPhysics\src\ofxForce.h">
+			<Filter>addons\ofxTraerPhysics\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxTraerPhysics\src\ofxFormConstantForce.h">
+			<Filter>addons\ofxTraerPhysics\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxTraerPhysics\src\ofxIntegrator.h">
+			<Filter>addons\ofxTraerPhysics\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxTraerPhysics\src\ofxModifiedEulerIntegrator.h">
+			<Filter>addons\ofxTraerPhysics\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxTraerPhysics\src\ofxOrbitalForce.h">
+			<Filter>addons\ofxTraerPhysics\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxTraerPhysics\src\ofxParticle.h">
+			<Filter>addons\ofxTraerPhysics\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxTraerPhysics\src\ofxParticleSystem.h">
+			<Filter>addons\ofxTraerPhysics\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxTraerPhysics\src\ofxPerlinForce.h">
+			<Filter>addons\ofxTraerPhysics\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxTraerPhysics\src\ofxPropForce.h">
+			<Filter>addons\ofxTraerPhysics\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxTraerPhysics\src\ofxRotationalForce.h">
+			<Filter>addons\ofxTraerPhysics\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxTraerPhysics\src\ofxRungeKuttaIntegrator.h">
+			<Filter>addons\ofxTraerPhysics\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxTraerPhysics\src\ofxScalarForce.h">
+			<Filter>addons\ofxTraerPhysics\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxTraerPhysics\src\Perlin.h">
+			<Filter>addons\ofxTraerPhysics\src</Filter>
+		</ClInclude>
+	</ItemGroup>
+	<ItemGroup>
+		<ResourceCompile Include="icon.rc" />
+	</ItemGroup>
+</Project>

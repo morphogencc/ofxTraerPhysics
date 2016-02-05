@@ -12,12 +12,11 @@ public:
 	enum Integrator { EULER, MODIFIED_EULER, RUNGE_KUTTA };
 	enum BoundaryType { NONE, BOX, PERIODIC };
 
-	std::shared_ptr<ofxParticleSystem> getInstance();
+	static std::shared_ptr<ofxParticleSystem> make();
 	~ofxParticleSystem();
 
 	void setIntegrator(Integrator method);
-	void setBoundaries(float minX, float maxX, float minY, float maxY);
-	void setBoundaryType(BoundaryType boundary);
+	void setBoundaryConditions(BoundaryType boundary, float minX, float maxX, float minY, float maxY);
 
 	void setGravity(float g);
 	void setGravity(float gx, float gy, float gz);
@@ -39,11 +38,11 @@ public:
 	int getNumberOfForces();
 	void clear();
 
-	void update(double t);
+	void tick();
+	void tick(double dt);
 
 protected:
 	ofxParticleSystem();
-	std::shared_ptr<ofxParticleSystem> mParticleSystem;
 
 	Integrator mIntegrationMethod;
 	BoundaryType mBoundaryType;

@@ -1,11 +1,11 @@
-#include "stdafx.h"
+
 #include "ofxRotationalForce.h"
 
 ofxRotationalForce::ofxRotationalForce(float f) : ofxForce(f) {
 	mMinDistance = 25;
 	mMaxDistance = 100;
 	mVeryFarAway = 10000000000;
-	mPosition = pfVec3(0, 0, 0);
+	mPosition = ofVec3f(0, 0, 0);
 }
 
 ofxRotationalForce::~ofxRotationalForce() {
@@ -25,9 +25,9 @@ void ofxRotationalForce::apply(std::shared_ptr<ofxParticle> p) {
 
 		float forceConstant = p->getMass() / distance;
 
-		pfVec3 unitVector = mPosition - p.get()->getPosition();
+		ofVec3f unitVector = mPosition - p.get()->getPosition();
 		unitVector.normalize();
-		unitVector = unitVector.perpendicular();
+		//unitVector = unitVector.perpendicular();
 
 		unitVector[0] *= forceConstant*mScale[0];
 		unitVector[1] *= forceConstant*mScale[1];
@@ -37,12 +37,12 @@ void ofxRotationalForce::apply(std::shared_ptr<ofxParticle> p) {
 	}
 }
 
-pfVec3 ofxRotationalForce::getPosition() {
+ofVec3f ofxRotationalForce::getPosition() {
 	return mPosition;
 }
 
 void ofxRotationalForce::setPosition(float x, float y, float z) {
-	mPosition = pfVec3(x, y, z);
+	mPosition = ofVec3f(x, y, z);
 }
 
 void ofxRotationalForce::setMinDistance(float distance) {

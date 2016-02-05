@@ -1,17 +1,14 @@
-#include "stdafx.h"
+
 #include "ofxAttractorForce.h"
 
-ofxAttractorForce::ofxAttractorForce(float f) : ofxForce(f) {
-	mMinDistance = 25;
-	mMaxDistance = 100;
-	mMinDistanceSq = mMinDistance*mMinDistance;
-	mMaxDistanceSq = mMaxDistance*mMaxDistance;
-	mVeryFarAway = 1000000000000000;
-	mPosition = pfVec3(0, 0, 0);
+std::shared_ptr<ofxAttractorForce> ofxAttractorForce::make(float f) {
+	std::shared_ptr<ofxAttractorForce> force(new ofxAttractorForce(f));
+	return force;
 }
 
-ofxAttractorForce::ofxAttractorForce(float fx, float fy, float fz) : ofxForce(fx, fy, fz) {
-
+std::shared_ptr<ofxAttractorForce> ofxAttractorForce::make(float fx, float fy, float fz) {
+	std::shared_ptr<ofxAttractorForce> force(new ofxAttractorForce(fx, fy, fz));
+	return force;
 }
 
 ofxAttractorForce::~ofxAttractorForce() {
@@ -24,7 +21,7 @@ void ofxAttractorForce::apply(std::shared_ptr<ofxParticle> p) {
 		distanceSq *= distanceSq;
 
 		if (distanceSq < mMinDistanceSq) {
-			distanceSq = mMinDistance;
+			distanceSq = mMinDistanceSq;
 		}
 		else if (distanceSq > mMaxDistanceSq) {
 			distanceSq = mVeryFarAway;
@@ -32,7 +29,7 @@ void ofxAttractorForce::apply(std::shared_ptr<ofxParticle> p) {
 
 		float forceConstant = p->getMass() / distanceSq;
 
-		pfVec3 unitVector = mPosition - p.get()->getPosition();
+		ofVec3f unitVector = mPosition - p.get()->getPosition();
 		unitVector.normalize();
 
 		unitVector[0] *= forceConstant*mScale[0];
@@ -43,20 +40,18 @@ void ofxAttractorForce::apply(std::shared_ptr<ofxParticle> p) {
 	}
 }
 
-pfVec3 ofxAttractorForce::getPosition() {
+ofVec3f ofxAttractorForce::getPosition() {
 	return mPosition;
 }
 
 void ofxAttractorForce::setPosition(float x, float y, float z) {
-	mPosition = pfVec3(x, y, z);
+	mPosition = ofVec3f(x, y, z);
 }
 
-void ofxAttractorForce::setMinDistance(float distance) {
-	mMinDistance = distance;
-	mMinDistanceSq = distance*distance;
+ofxAttractorForce::ofxAttractorForce(float f) : ofxForce(f) {
+	mPosition = ofVec3f(0, 0, 0);
 }
 
-void ofxAttractorForce::setMaxDistance(float distance) {
-	mMaxDistance = distance;
-	mMaxDistanceSq = distance*distance;
+ofxAttractorForce::ofxAttractorForce(float fx, float fy, float fz) : ofxForce(fx, fy, fz) {
+	mPosition = ofVec3f(0, 0, 0);
 }

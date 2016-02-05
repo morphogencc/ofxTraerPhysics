@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "ofxParticleSystem.h"
 #include "ofxEulerIntegrator.h"
 #include "ofxModifiedEulerIntegrator.h"
@@ -6,13 +5,10 @@
 
 const float ofxParticleSystem::DEFAULT_GRAVITY = 0.0;
 const float ofxParticleSystem::DEFAULT_DRAG = 0.05;
-std::shared_ptr<ofxParticleSystem> ofxParticleSystem::mParticleSystem = nullptr;
 
-std::shared_ptr<ofxParticleSystem> ofxParticleSystem::getInstance() {
-	if (mParticleSystem == nullptr) {
-		mParticleSystem = std::make_shared<ofxParticleSystem>();
-}	
-	return mParticleSystem;
+std::shared_ptr<ofxParticleSystem> ofxParticleSystem::make() {
+	std::shared_ptr<ofxParticleSystem> particleSystem(new ofxParticleSystem);
+	return particleSystem;
 }
 
 ofxParticleSystem::ofxParticleSystem() {
@@ -51,15 +47,12 @@ void ofxParticleSystem::setIntegrator(Integrator method) {
 	}
 }
 
-void ofxParticleSystem::setBoundaries(float minX, float maxX, float minY, float maxY) {
+void ofxParticleSystem::setBoundaryConditions(BoundaryType boundary, float minX, float maxX, float minY, float maxY) {
+	mBoundaryType = boundary;
 	mMinX = minX;
 	mMaxX = maxX;
 	mMinY = minY;
 	mMaxY = maxY;
-}
-
-void ofxParticleSystem::setBoundaryType(BoundaryType boundary) {
-	mBoundaryType = boundary;
 }
 
 void ofxParticleSystem::setGravity(float g) {
@@ -79,24 +72,21 @@ void ofxParticleSystem::setDrag(float dx, float dy, float dz) {
 }
 
 void ofxParticleSystem::addParticle(float m) {
-	std::shared_ptr<ofxParticle> p = std::make_shared<ofxParticle>(m);
+	std::shared_ptr<ofxParticle> p = ofxParticle::make(m);
 	p.get()->setPosition(0, 0, 0);
 	mParticles.push_back(p);
-	addChild(p.get());
 }
 
 void ofxParticleSystem::addParticle(float m, float x, float y) {
-	std::shared_ptr<ofxParticle> p = std::make_shared<ofxParticle>(m);
+	std::shared_ptr<ofxParticle> p = ofxParticle::make(m);
 	p.get()->setPosition(x, y, 0);
 	mParticles.push_back(p);
-	addChild(p.get());
 }
 
 void ofxParticleSystem::addParticle(float m, float x, float y, float z) {
-	std::shared_ptr<ofxParticle> p = std::make_shared<ofxParticle>(m);
+	std::shared_ptr<ofxParticle> p = ofxParticle::make(m);
 	p.get()->setPosition(x, y, z);
 	mParticles.push_back(p);
-	addChild(p.get());
 }
 
 int ofxParticleSystem::getNumberOfParticles() {
@@ -138,12 +128,16 @@ void ofxParticleSystem::clear() {
 	mForces.clear();
 }
 
-void ofxParticleSystem::update(double t) {
-	mIntegrator.get()->tick(1);
+void ofxParticleSystem::tick() {
+	tick(1.0);
+}
+
+void ofxParticleSystem::tick(double dt) {
+	mIntegrator.get()->tick(dt);
 
 	//update time-dependent forces
 	for (auto f : mForces) {
-		f.get()->tick(t);
+		f.get()->tick(dt);
 	}
 
 	if (mBoundaryType == BoundaryType::BOX) {
@@ -151,15 +145,19 @@ void ofxParticleSystem::update(double t) {
 			ofVec3f position = p.get()->getPosition();
 			ofVec3f velocity = p.get()->getVelocity();
 			if (position[0] < mMinX) {
+				position[0] = mMinX;
 				velocity[0] *= -1;
 			}
 			else if (position[0] > mMaxX) {
+				position[0] = mMaxX;
 				velocity[0] *= -1;
 			}
 			if (position[1] < mMinY) {
+				position[1] = mMinY;
 				velocity[1] *= -1;
 			}
 			else if (position[1] > mMaxY) {
+				position[1] = mMaxY;
 				velocity[1] *= -1;
 			}
 			p->setVelocity(velocity);

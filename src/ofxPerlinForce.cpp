@@ -1,4 +1,4 @@
-#include "stdafx.h"
+
 #include "ofxPerlinForce.h"
 
 std::shared_ptr<ofxPerlinForce> ofxPerlinForce::make(float f) {
@@ -17,8 +17,8 @@ ofxPerlinForce::~ofxPerlinForce() {
 
 void ofxPerlinForce::apply(std::shared_ptr<ofxParticle> p) {
 	if (isOn()) {
-		pfVec3 position = p.get()->getPosition();
-		pfVec3 force;
+		ofVec3f position = p.get()->getPosition();
+		ofVec3f force;
 		float vec[3];
 		vec[0] = 0.001*position[0];
 		vec[1] = 0.001*position[1];

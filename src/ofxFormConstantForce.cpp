@@ -1,4 +1,4 @@
-#include "stdafx.h"
+
 #include "ofxFormConstantForce.h"
 
 ofxFormConstantForce::ofxFormConstantForce(float f) : ofxForce(f) {
@@ -24,21 +24,21 @@ ofxFormConstantForce::~ofxFormConstantForce() {
 
 void ofxFormConstantForce::apply(std::shared_ptr<ofxParticle> p) {
 	if (isOn()) {
-		pfVec3 position = p.get()->getPosition();
-		pfVec3 radialPosition = pfVec3(position[0] * position[0] + position[1] * position[1], atan2(position[0], position[1]), 0);
-		pfVec3 force = pfVec3(0, 0, 0);
+		ofVec3f position = p.get()->getPosition();
+		ofVec3f radialPosition = ofVec3f(position[0] * position[0] + position[1] * position[1], atan2(position[0], position[1]), 0);
+		ofVec3f force = ofVec3f(0, 0, 0);
 
 		if (mHorizontalBands) {
-			force += pfVec3(mScale[0] * cos(mNumHorizontalBands*position[0] + 0.0001*mSpeed*mTime), 0, 0);
+			force += ofVec3f(mScale[0] * cos(mNumHorizontalBands*position[0] + 0.0001*mSpeed*mTime), 0, 0);
 		}
 		if (mVerticalBands) {
-			force += pfVec3(0, mScale[1] * cos(mNumVerticalBands*position[1] + 0.0001*mSpeed*mTime), 0);
+			force += ofVec3f(0, mScale[1] * cos(mNumVerticalBands*position[1] + 0.0001*mSpeed*mTime), 0);
 		}
 		if (mRings) {
-			force += pfVec3(mScale[0] * position[0] * sin(0.5 * mNumRings * log(radialPosition[0]) + mSpeed*mTime) / radialPosition[0], mScale[1] * position[1] * sin(0.5 * mNumRings * log(radialPosition[0]) + mSpeed*mTime) / radialPosition[0], 0);
+			force += ofVec3f(mScale[0] * position[0] * sin(0.5 * mNumRings * log(radialPosition[0]) + mSpeed*mTime) / radialPosition[0], mScale[1] * position[1] * sin(0.5 * mNumRings * log(radialPosition[0]) + mSpeed*mTime) / radialPosition[0], 0);
 		}
 		if (mArms) {
-			force += pfVec3(- mScale[0] * position[1] * sin(0.5 * mNumArms * radialPosition[1] + mSpeed*mTime) / radialPosition[0], mScale[1] * position[0] * sin(0.5 * mNumArms * radialPosition[1] + mSpeed*mTime) / radialPosition[0], 0);
+			force += ofVec3f(- mScale[0] * position[1] * sin(0.5 * mNumArms * radialPosition[1] + mSpeed*mTime) / radialPosition[0], mScale[1] * position[0] * sin(0.5 * mNumArms * radialPosition[1] + mSpeed*mTime) / radialPosition[0], 0);
 		}
 
 		p->addForce(force);

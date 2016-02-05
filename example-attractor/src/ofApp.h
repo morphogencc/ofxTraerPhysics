@@ -4,13 +4,8 @@
 #include "ofxParticleSystem.h"
 #include "ofxAttractorForce.h"
 
-class myParticle : public ofxParticle {
-	void draw() {
-		ofCircle(getPosition()[0], getPosition()[1], 10);
-	}
-};
-
 class ofApp : public ofBaseApp{
+
 	public:
 		void setup();
 		void update();
@@ -27,6 +22,7 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
-	protected:
-		std::shared_ptr<ofxParticleSystem> mParticleSystem;
+protected:
+	std::shared_ptr<ofxParticleSystem> mParticleSystem;
+	std::shared_ptr<ofxAttractorForce> mAttractor;
 };

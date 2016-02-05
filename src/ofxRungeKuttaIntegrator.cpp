@@ -1,4 +1,4 @@
-#include "stdafx.h"
+
 #include "ofxRungeKuttaIntegrator.h"
 
 ofxRungeKuttaIntegrator::ofxRungeKuttaIntegrator(ofxParticleSystem* particleSystem) : ofxIntegrator(particleSystem) {
@@ -14,9 +14,9 @@ void ofxRungeKuttaIntegrator::tick(float dt) {
 
 	for (auto p : mParticleSystem->getParticles()) {
 		if (!p.get()->isFree()) {
-			pfVec3 force = p.get()->getForces();
-			pfVec3 velocity = p.get()->getVelocity();
-			pfVec3 position = p.get()->getPosition();
+			ofVec3f force = p.get()->getForces();
+			ofVec3f velocity = p.get()->getVelocity();
+			ofVec3f position = p.get()->getPosition();
 
 			//update position with last frame's velocity
 			position += velocity*dt;

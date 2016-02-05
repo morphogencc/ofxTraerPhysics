@@ -1,4 +1,4 @@
-#include "stdafx.h"
+
 #include "Perlin.h"
 
 /* coherent noise function over 1, 2 or 3 dimensions */

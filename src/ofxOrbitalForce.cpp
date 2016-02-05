@@ -1,11 +1,11 @@
-#include "stdafx.h"
+
 #include "ofxOrbitalForce.h"
 
 ofxOrbitalForce::ofxOrbitalForce(float f) : ofxForce(f) {
 	mMinDistance = 25;
 	mMaxDistance = 100;
 	mVeryFarAway = 10000000000;
-	mPosition = pfVec3(0, 0, 0);
+	mPosition = ofVec3f(0, 0, 0);
 }
 
 ofxOrbitalForce::~ofxOrbitalForce() {
@@ -25,8 +25,8 @@ void ofxOrbitalForce::apply(std::shared_ptr<ofxParticle> p) {
 
 		float forceConstant = p->getMass() / distance;
 
-		pfVec3 unitVector = mPosition - p.get()->getPosition();
-		unitVector = pfVec3(unitVector[1], -unitVector[0], 0);
+		ofVec3f unitVector = mPosition - p.get()->getPosition();
+		unitVector = ofVec3f(unitVector[1], -unitVector[0], 0);
 		unitVector.normalize();
 		
 		unitVector[0] *= forceConstant*mScale[0];
@@ -37,12 +37,12 @@ void ofxOrbitalForce::apply(std::shared_ptr<ofxParticle> p) {
 	}
 }
 
-pfVec3 ofxOrbitalForce::getPosition() {
+ofVec3f ofxOrbitalForce::getPosition() {
 	return mPosition;
 }
 
 void ofxOrbitalForce::setPosition(float x, float y, float z) {
-	mPosition = pfVec3(x, y, z);
+	mPosition = ofVec3f(x, y, z);
 }
 
 void ofxOrbitalForce::setMinDistance(float distance) {

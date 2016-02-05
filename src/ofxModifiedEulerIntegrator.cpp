@@ -1,4 +1,4 @@
-#include "stdafx.h"
+
 #include "ofxModifiedEulerIntegrator.h"
 
 ofxModifiedEulerIntegrator::ofxModifiedEulerIntegrator(ofxParticleSystem* particleSystem) : ofxIntegrator(particleSystem) {
@@ -15,11 +15,11 @@ void ofxModifiedEulerIntegrator::tick(float dt) {
 
 	for (auto p : mParticleSystem->getParticles()) {
 		if (!p.get()->isFree()) {
-			pfVec3 force = p.get()->getForces();
-			pfVec3 velocity = p.get()->getVelocity();
-			pfVec3 position = p.get()->getPosition();
+			ofVec3f force = p.get()->getForces();
+			ofVec3f velocity = p.get()->getVelocity();
+			ofVec3f position = p.get()->getPosition();
 
-			pfVec3 acceleration = force * 1.0 / p.get()->getMass();
+			ofVec3f acceleration = force * 1.0 / p.get()->getMass();
 
 			position += velocity / dt;
 			position += acceleration * tt;

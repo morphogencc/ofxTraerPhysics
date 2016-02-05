@@ -1,4 +1,4 @@
-#include "stdafx.h"
+
 #include "ofxPropForce.h"
 
 ofxPropForce::ofxPropForce(float f) : ofxForce(f) {
@@ -15,7 +15,7 @@ ofxPropForce::~ofxPropForce() {
 
 void ofxPropForce::apply(std::shared_ptr<ofxParticle> p) {
 	if (isOn()) {
-		pfVec3 velocity = p.get()->getVelocity();
+		ofVec3f velocity = p.get()->getVelocity();
 		velocity[0] *= mScale[0];
 		velocity[1] *= mScale[1];
 		velocity[2] *= mScale[2];

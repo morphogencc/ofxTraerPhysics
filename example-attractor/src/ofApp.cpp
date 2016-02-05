@@ -28,12 +28,10 @@ void ofApp::draw(){
 
 	mParticleSystem->tick(1.0);
 
-	//draw attractor
 	ofSetColor(128, 255, 0);
 	mAttractor->setPosition(ofGetMouseX(), ofGetMouseY(), 0.0);
 	ofCircle(mAttractor->getPosition()[0], mAttractor->getPosition()[1], 10);
 
-	//draw particles
 	ofSetColor(0, 255, 255);
 	for (auto particle : mParticleSystem->getParticles()) {
 		ofCircle(particle->getPosition()[0], particle->getPosition()[1], 5);

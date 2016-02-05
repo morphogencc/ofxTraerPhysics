@@ -1,16 +1,9 @@
-#include "stdafx.h"
+
 #include "ofxParticle.h"
 
-ofxParticle::ofxParticle(float mass = 1) {
-	mPosition = pfVec3(0, 0, 0);
-	mVelocity = pfVec3(0, 0, 0);
-	mForces = pfVec3(0, 0, 0);
-	mMass = mass;
-	mAge = -1;
-	mAlive = true;
-	mFree = true;
-
-	mRandom = std::rand() % 120;
+std::shared_ptr<ofxParticle> ofxParticle::make(float mass = 1) {
+	std::shared_ptr<ofxParticle> particle(new ofxParticle(mass));
+	return particle;
 }
 
 void ofxParticle::setMass(float mass) {
@@ -25,33 +18,31 @@ void ofxParticle::makeFree() {
 	mFree = true;
 }
 
-pfVec3 ofxParticle::getPosition() {
+ofVec3f ofxParticle::getPosition() {
 	return mPosition;
 }
 
-pfVec3 ofxParticle::getVelocity() {
+ofVec3f ofxParticle::getVelocity() {
 	return mVelocity;
 }
 
-pfVec3 ofxParticle::getForces() {
+ofVec3f ofxParticle::getForces() {
 	return mForces;
 }
 
 void ofxParticle::setPosition(float x, float y, float z) {
-	mPosition = pfVec3(x, y, z);
-	setTrans(mPosition);
+	mPosition = ofVec3f(x, y, z);
 }
 
-void ofxParticle::setPosition(pfVec3 position) {
-	mPosition = position;
-	setTrans(mPosition);
+void ofxParticle::setPosition(ofVec3f position) {
+	mPosition.set(position);
 }
 
-void ofxParticle::setVelocity(pfVec3 velocity) {
-	mVelocity = velocity;
+void ofxParticle::setVelocity(ofVec3f velocity) {
+	mVelocity.set(velocity);
 }
 
-void ofxParticle::addForce(pfVec3 force) {
+void ofxParticle::addForce(ofVec3f force) {
 	mForces += force;
 }
 
@@ -76,9 +67,9 @@ bool ofxParticle::isAlive() {
 }
 
 void ofxParticle::reset() {
-	mPosition = pfVec3(0, 0, 0);
-	mVelocity = pfVec3(0, 0, 0);
-	mForces = pfVec3(0, 0, 0);
+	mPosition = ofVec3f(0, 0, 0);
+	mVelocity = ofVec3f(0, 0, 0);
+	mForces = ofVec3f(0, 0, 0);
 	mMass = 1;
 	mAge = 0;
 	mAlive = true;
@@ -86,11 +77,21 @@ void ofxParticle::reset() {
 }
 
 void ofxParticle::clearForces() {
-	mForces = pfVec3(0, 0, 0);
+	mForces = ofVec3f(0, 0, 0);
 }
 
 void ofxParticle::update(double t) {
 	if (mAge > 0) {
 		mAge--;
 	}
+}
+
+ofxParticle::ofxParticle(float mass = 1) {
+	mPosition = ofVec3f(0, 0, 0);
+	mVelocity = ofVec3f(0, 0, 0);
+	mForces = ofVec3f(0, 0, 0);
+	mMass = mass;
+	mAge = -1;
+	mAlive = true;
+	mFree = true;
 }
