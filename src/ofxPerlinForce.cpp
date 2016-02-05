@@ -1,12 +1,14 @@
 #include "stdafx.h"
 #include "ofxPerlinForce.h"
 
-ofxPerlinForce::ofxPerlinForce(float f) : ofxForce(f) {
-	mNoise = new Perlin(3, 2, 2, 0);
+std::shared_ptr<ofxPerlinForce> ofxPerlinForce::make(float f) {
+	std::shared_ptr<ofxPerlinForce> force(new ofxPerlinForce(f));
+	return force;
 }
 
-ofxPerlinForce::ofxPerlinForce(float fx, float fy, float fz) : ofxForce(fx, fy, fz) {
-
+std::shared_ptr<ofxPerlinForce> ofxPerlinForce::make(float fx, float fy, float fz) {
+	std::shared_ptr<ofxPerlinForce> force(new ofxPerlinForce(fx, fy, fz));
+	return force;
 }
 
 ofxPerlinForce::~ofxPerlinForce() {
@@ -29,4 +31,12 @@ void ofxPerlinForce::apply(std::shared_ptr<ofxParticle> p) {
 
 		p->addForce(force);
 	}
+}
+
+ofxPerlinForce::ofxPerlinForce(float f) : ofxForce(f) {
+	mNoise = new Perlin(3, 2, 2, 0);
+}
+
+ofxPerlinForce::ofxPerlinForce(float fx, float fy, float fz) : ofxForce(fx, fy, fz) {
+
 }
