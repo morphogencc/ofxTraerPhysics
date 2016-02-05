@@ -20,4 +20,4 @@ The entry point is `ofxParticleSystem`; create an instance of it via `ofxParticl
 This project uses the [Git Flow](http://nvie.com/posts/a-successful-git-branching-model/) paradigm.  Before contributing, please make your own feature branch with your changes.
 
 ## More Information
-Jeffrey Bernstein's Traer Physics library that inspired this addon can be found [http://murderandcreate.com/physics](here).
+Jeffrey Bernstein's Traer Physics library that inspired this addon can be found [here](http://murderandcreate.com/physics).
