@@ -1,3 +1,5 @@
+#pragma once
+
 #include "ofxForce.h"
 
 class ofxAttractorForce : public ofxForce {

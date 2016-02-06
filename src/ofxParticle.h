@@ -5,6 +5,8 @@
 class ofxParticle {
  public:
 	 static std::shared_ptr<ofxParticle> make(float mass);
+	 static std::shared_ptr<ofxParticle> make(float mass, float x, float y, float z);
+	 static std::shared_ptr<ofxParticle> make(float mass, ofVec3f position);
 	 void update(double t);
   void setMass(float mass);
   void makeFixed();

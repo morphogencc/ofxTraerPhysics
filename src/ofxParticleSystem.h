@@ -3,6 +3,7 @@
 #include <memory>
 #include "ofxParticle.h"
 #include "ofxForce.h"
+#include "ofxSpring.h"
 #include "ofxScalarForce.h"
 #include "ofxPropForce.h"
 #include "ofxIntegrator.h"
@@ -24,9 +25,9 @@ public:
 	void setDrag(float d);
 	void setDrag(float dx, float dy, float dz);
 
-	void addParticle(float m);
-	void addParticle(float m, float x, float y);
-	void addParticle(float m, float x, float y, float z);
+	std::shared_ptr<ofxParticle> addParticle(float m);
+	std::shared_ptr<ofxParticle> addParticle(float m, float x, float y);
+	std::shared_ptr<ofxParticle> addParticle(float m, float x, float y, float z);
 
 	std::shared_ptr<ofxParticle> getParticle(int i);
 	std::vector<std::shared_ptr<ofxParticle> > getParticles();
@@ -36,6 +37,10 @@ public:
 	void clearForces();
 	void addForce(std::shared_ptr<ofxForce> f);
 	int getNumberOfForces();
+
+	void addSpring(std::shared_ptr<ofxSpring> s);
+	int getNumberOfSprings();
+
 	void clear();
 
 	void tick();
@@ -60,5 +65,6 @@ protected:
 
 	std::vector<std::shared_ptr<ofxParticle> > mParticles;
 	std::vector<std::shared_ptr<ofxForce> > mForces;
+	std::vector<std::shared_ptr<ofxSpring> > mSprings;
 
 };

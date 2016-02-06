@@ -6,6 +6,18 @@ std::shared_ptr<ofxParticle> ofxParticle::make(float mass = 1) {
 	return particle;
 }
 
+std::shared_ptr<ofxParticle> ofxParticle::make(float mass, float x, float y, float z) {
+	std::shared_ptr<ofxParticle> particle(new ofxParticle(mass));
+	particle->setPosition(x, y, z);
+	return particle;
+}
+
+std::shared_ptr<ofxParticle> ofxParticle::make(float mass, ofVec3f position) {
+	std::shared_ptr<ofxParticle> particle(new ofxParticle(mass));
+	particle->setPosition(position);
+	return particle;
+}
+
 void ofxParticle::setMass(float mass) {
 	mMass = mass;
 }

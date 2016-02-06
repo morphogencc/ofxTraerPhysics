@@ -71,22 +71,25 @@ void ofxParticleSystem::setDrag(float dx, float dy, float dz) {
 	mDragForce = std::make_shared<ofxPropForce>(dx, dy, dz);
 }
 
-void ofxParticleSystem::addParticle(float m) {
+std::shared_ptr<ofxParticle> ofxParticleSystem::addParticle(float m) {
 	std::shared_ptr<ofxParticle> p = ofxParticle::make(m);
 	p.get()->setPosition(0, 0, 0);
 	mParticles.push_back(p);
+	return p;
 }
 
-void ofxParticleSystem::addParticle(float m, float x, float y) {
+std::shared_ptr<ofxParticle> ofxParticleSystem::addParticle(float m, float x, float y) {
 	std::shared_ptr<ofxParticle> p = ofxParticle::make(m);
 	p.get()->setPosition(x, y, 0);
 	mParticles.push_back(p);
+	return p;
 }
 
-void ofxParticleSystem::addParticle(float m, float x, float y, float z) {
+std::shared_ptr<ofxParticle> ofxParticleSystem::addParticle(float m, float x, float y, float z) {
 	std::shared_ptr<ofxParticle> p = ofxParticle::make(m);
 	p.get()->setPosition(x, y, z);
 	mParticles.push_back(p);
+	return p;
 }
 
 int ofxParticleSystem::getNumberOfParticles() {
@@ -107,6 +110,10 @@ void ofxParticleSystem::applyForces() {
 			f.get()->apply(p);
 		}
 	}
+
+	for (auto s : mSprings) {
+		s.get()->apply();
+	}
 }
 
 void ofxParticleSystem::clearForces() {
@@ -121,6 +128,14 @@ void ofxParticleSystem::addForce(std::shared_ptr<ofxForce> f) {
 
 int ofxParticleSystem::getNumberOfForces() {
 	return mForces.size();
+}
+
+void ofxParticleSystem::addSpring(std::shared_ptr<ofxSpring> s) {
+	mSprings.push_back(s);
+}
+
+int ofxParticleSystem::getNumberOfSprings() {
+	return mSprings.size();
 }
 
 void ofxParticleSystem::clear() {
@@ -138,6 +153,9 @@ void ofxParticleSystem::tick(double dt) {
 	//update time-dependent forces
 	for (auto f : mForces) {
 		f.get()->tick(dt);
+	}
+	for (auto s : mSprings) {
+		s.get()->tick(dt);
 	}
 
 	if (mBoundaryType == BoundaryType::BOX) {
