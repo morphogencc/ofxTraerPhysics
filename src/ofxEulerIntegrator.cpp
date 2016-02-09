@@ -1,5 +1,6 @@
-
 #include "ofxEulerIntegrator.h"
+
+using namespace ofxTraerPhysics;
 
 ofxEulerIntegrator::ofxEulerIntegrator(ofxParticleSystem* particleSystem) : ofxIntegrator(particleSystem) {
 };

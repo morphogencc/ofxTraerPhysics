@@ -1,5 +1,7 @@
 #include "ofxSpring.h"
 
+using namespace ofxTraerPhysics;
+
 std::shared_ptr<ofxSpring> ofxSpring::make(std::shared_ptr<ofxParticle> particleA, std::shared_ptr<ofxParticle> particleB, float spring_constant, float dampening, float length) {
 	std::shared_ptr<ofxSpring> spring(new ofxSpring(particleA, particleB, spring_constant, dampening, length));
 	return spring;

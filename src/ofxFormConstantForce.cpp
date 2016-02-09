@@ -1,5 +1,6 @@
-
 #include "ofxFormConstantForce.h"
+
+using namespace ofxTraerPhysics;
 
 ofxFormConstantForce::ofxFormConstantForce(float f) : ofxForce(f) {
 	mVerticalBands = false;

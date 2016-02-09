@@ -5,14 +5,14 @@
 void ofApp::setup(){
 	ofSetWindowTitle("ofxTraerPhysics -- Noise Field Example");
 
-	mParticleSystem = ofxParticleSystem::make();
-	mParticleSystem->setBoundaryConditions(ofxParticleSystem::BoundaryType::PERIODIC, 0, ofGetWidth(), 0, ofGetHeight());
+	mParticleSystem = ofxTraerPhysics::ofxParticleSystem::make();
+	mParticleSystem->setBoundaryConditions(ofxTraerPhysics::ofxParticleSystem::BoundaryType::PERIODIC, 0, ofGetWidth(), 0, ofGetHeight());
 
 	for (int i = 0; i < 100; i++) {
 		mParticleSystem->addParticle(ofRandom(1.0, 10.0), ofRandom(ofGetWidth()), ofRandom(ofGetHeight()));
 	}
 
-	std::shared_ptr<ofxPerlinForce> noiseForce = ofxPerlinForce::make(5.0);
+	std::shared_ptr<ofxTraerPhysics::ofxPerlinForce> noiseForce = ofxTraerPhysics::ofxPerlinForce::make(5.0);
 	mParticleSystem->addForce(noiseForce);
 }
 

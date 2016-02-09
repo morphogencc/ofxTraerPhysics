@@ -1,5 +1,6 @@
-
 #include "ofxParticle.h"
+
+using namespace ofxTraerPhysics;
 
 std::shared_ptr<ofxParticle> ofxParticle::make(float mass = 1) {
 	std::shared_ptr<ofxParticle> particle(new ofxParticle(mass));

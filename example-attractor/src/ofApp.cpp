@@ -4,15 +4,15 @@
 void ofApp::setup(){
 	ofSetWindowTitle("ofxTraerPhysics -- Attractor Example");
 
-	mParticleSystem = ofxParticleSystem::make();
-	mParticleSystem->setBoundaryConditions(ofxParticleSystem::BoundaryType::PERIODIC, 0, ofGetWidth(), 0, ofGetHeight());
+	mParticleSystem = ofxTraerPhysics::ofxParticleSystem::make();
+	mParticleSystem->setBoundaryConditions(ofxTraerPhysics::ofxParticleSystem::BoundaryType::PERIODIC, 0, ofGetWidth(), 0, ofGetHeight());
 	mParticleSystem->setGravity(0.2);
 
 	for (int i = 0; i < 500; i++) {
 		mParticleSystem->addParticle(1.0, ofRandom(ofGetWidth()), ofRandom(ofGetHeight()));
 	}
 
-	mAttractor = ofxAttractorForce::make(1000.0);
+	mAttractor = ofxTraerPhysics::ofxAttractorForce::make(1000.0);
 	mAttractor->setMinDistance(25.0);
 	mParticleSystem->addForce(mAttractor);
 }

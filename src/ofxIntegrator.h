@@ -2,15 +2,19 @@
 
 #include <memory>
 
-class ofxParticleSystem;
+namespace ofxTraerPhysics {
 
-class ofxIntegrator {
-public:
-	ofxIntegrator(ofxParticleSystem* particleSystem) {
-		mParticleSystem = particleSystem;
+	class ofxParticleSystem;
+
+	class ofxIntegrator {
+	public:
+		ofxIntegrator(ofxParticleSystem* particleSystem) {
+			mParticleSystem = particleSystem;
+		};
+		virtual ~ofxIntegrator() {};
+		virtual void tick(float dt) {};
+	protected:
+		ofxParticleSystem* mParticleSystem;
 	};
-	virtual ~ofxIntegrator() {};
-	virtual void tick(float dt) {};
-protected:
-  ofxParticleSystem* mParticleSystem;
-};
+
+}

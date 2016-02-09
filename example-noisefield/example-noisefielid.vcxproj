@@ -172,6 +172,7 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\ofxSpring.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="..\..\..\addons\ofxTraerPhysics\src\ofxAttractorForce.cpp" />
@@ -189,6 +190,7 @@
     <ClCompile Include="..\..\..\addons\ofxTraerPhysics\src\Perlin.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\ofxSpring.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="..\..\..\addons\ofxTraerPhysics\src\ofxAttractorForce.h" />
     <ClInclude Include="..\..\..\addons\ofxTraerPhysics\src\ofxEulerIntegrator.h" />

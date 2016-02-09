@@ -1,5 +1,6 @@
-
 #include "ofxPropForce.h"
+
+using namespace ofxTraerPhysics;
 
 ofxPropForce::ofxPropForce(float f) : ofxForce(f) {
 

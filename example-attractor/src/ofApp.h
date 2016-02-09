@@ -23,6 +23,6 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 protected:
-	std::shared_ptr<ofxParticleSystem> mParticleSystem;
-	std::shared_ptr<ofxAttractorForce> mAttractor;
+	std::shared_ptr<ofxTraerPhysics::ofxParticleSystem> mParticleSystem;
+	std::shared_ptr<ofxTraerPhysics::ofxAttractorForce> mAttractor;
 };

@@ -1,5 +1,6 @@
-
 #include "ofxRungeKuttaIntegrator.h"
+
+using namespace ofxTraerPhysics;
 
 ofxRungeKuttaIntegrator::ofxRungeKuttaIntegrator(ofxParticleSystem* particleSystem) : ofxIntegrator(particleSystem) {
 };

@@ -3,6 +3,8 @@
 #include "ofxModifiedEulerIntegrator.h"
 #include "ofxRungeKuttaIntegrator.h"
 
+using namespace ofxTraerPhysics;
+
 const float ofxParticleSystem::DEFAULT_GRAVITY = 0.0;
 const float ofxParticleSystem::DEFAULT_DRAG = 0.05;
 

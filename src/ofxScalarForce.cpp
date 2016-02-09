@@ -1,5 +1,6 @@
-
 #include "ofxScalarForce.h"
+
+using namespace ofxTraerPhysics;
 
 ofxScalarForce::ofxScalarForce(float f) : ofxForce(f) {
 

@@ -1,5 +1,6 @@
-
 #include "ofxPerlinForce.h"
+
+using namespace ofxTraerPhysics;
 
 std::shared_ptr<ofxPerlinForce> ofxPerlinForce::make(float f) {
 	std::shared_ptr<ofxPerlinForce> force(new ofxPerlinForce(f));

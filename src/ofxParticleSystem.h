@@ -8,63 +8,67 @@
 #include "ofxPropForce.h"
 #include "ofxIntegrator.h"
 
-class ofxParticleSystem {
-public:
-	enum Integrator { EULER, MODIFIED_EULER, RUNGE_KUTTA };
-	enum BoundaryType { NONE, BOX, PERIODIC };
+namespace ofxTraerPhysics {
 
-	static std::shared_ptr<ofxParticleSystem> make();
-	~ofxParticleSystem();
+	class ofxParticleSystem {
+	public:
+		enum Integrator { EULER, MODIFIED_EULER, RUNGE_KUTTA };
+		enum BoundaryType { NONE, BOX, PERIODIC };
 
-	void setIntegrator(Integrator method);
-	void setBoundaryConditions(BoundaryType boundary, float minX, float maxX, float minY, float maxY);
+		static std::shared_ptr<ofxParticleSystem> make();
+		~ofxParticleSystem();
 
-	void setGravity(float g);
-	void setGravity(float gx, float gy, float gz);
+		void setIntegrator(Integrator method);
+		void setBoundaryConditions(BoundaryType boundary, float minX, float maxX, float minY, float maxY);
 
-	void setDrag(float d);
-	void setDrag(float dx, float dy, float dz);
+		void setGravity(float g);
+		void setGravity(float gx, float gy, float gz);
 
-	std::shared_ptr<ofxParticle> addParticle(float m);
-	std::shared_ptr<ofxParticle> addParticle(float m, float x, float y);
-	std::shared_ptr<ofxParticle> addParticle(float m, float x, float y, float z);
+		void setDrag(float d);
+		void setDrag(float dx, float dy, float dz);
 
-	std::shared_ptr<ofxParticle> getParticle(int i);
-	std::vector<std::shared_ptr<ofxParticle> > getParticles();
-	int getNumberOfParticles();
+		std::shared_ptr<ofxParticle> addParticle(float m);
+		std::shared_ptr<ofxParticle> addParticle(float m, float x, float y);
+		std::shared_ptr<ofxParticle> addParticle(float m, float x, float y, float z);
 
-	void applyForces();
-	void clearForces();
-	void addForce(std::shared_ptr<ofxForce> f);
-	int getNumberOfForces();
+		std::shared_ptr<ofxParticle> getParticle(int i);
+		std::vector<std::shared_ptr<ofxParticle> > getParticles();
+		int getNumberOfParticles();
 
-	void addSpring(std::shared_ptr<ofxSpring> s);
-	int getNumberOfSprings();
+		void applyForces();
+		void clearForces();
+		void addForce(std::shared_ptr<ofxForce> f);
+		int getNumberOfForces();
 
-	void clear();
+		void addSpring(std::shared_ptr<ofxSpring> s);
+		int getNumberOfSprings();
 
-	void tick();
-	void tick(double dt);
+		void clear();
 
-protected:
-	ofxParticleSystem();
+		void tick();
+		void tick(double dt);
 
-	Integrator mIntegrationMethod;
-	BoundaryType mBoundaryType;
-	static const float DEFAULT_GRAVITY;
-	static const float DEFAULT_DRAG;
+	protected:
+		ofxParticleSystem();
 
-	float mMinX;
-	float mMaxX;
-	float mMinY;
-	float mMaxY;
+		Integrator mIntegrationMethod;
+		BoundaryType mBoundaryType;
+		static const float DEFAULT_GRAVITY;
+		static const float DEFAULT_DRAG;
 
-	std::shared_ptr<ofxIntegrator> mIntegrator;
-	std::shared_ptr<ofxScalarForce> mGravityForce;
-	std::shared_ptr<ofxPropForce> mDragForce;
+		float mMinX;
+		float mMaxX;
+		float mMinY;
+		float mMaxY;
 
-	std::vector<std::shared_ptr<ofxParticle> > mParticles;
-	std::vector<std::shared_ptr<ofxForce> > mForces;
-	std::vector<std::shared_ptr<ofxSpring> > mSprings;
+		std::shared_ptr<ofxIntegrator> mIntegrator;
+		std::shared_ptr<ofxScalarForce> mGravityForce;
+		std::shared_ptr<ofxPropForce> mDragForce;
 
-};
+		std::vector<std::shared_ptr<ofxParticle> > mParticles;
+		std::vector<std::shared_ptr<ofxForce> > mForces;
+		std::vector<std::shared_ptr<ofxSpring> > mSprings;
+
+	};
+
+}

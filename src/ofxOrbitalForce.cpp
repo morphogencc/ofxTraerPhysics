@@ -1,5 +1,6 @@
-
 #include "ofxOrbitalForce.h"
+
+using namespace ofxTraerPhysics;
 
 ofxOrbitalForce::ofxOrbitalForce(float f) : ofxForce(f) {
 	mMinDistance = 25;

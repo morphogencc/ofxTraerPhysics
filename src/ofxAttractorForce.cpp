@@ -1,5 +1,6 @@
-
 #include "ofxAttractorForce.h"
+
+using namespace ofxTraerPhysics;
 
 std::shared_ptr<ofxAttractorForce> ofxAttractorForce::make(float f) {
 	std::shared_ptr<ofxAttractorForce> force(new ofxAttractorForce(f));
