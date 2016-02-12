@@ -15,7 +15,7 @@ ofxOrbitalForce::~ofxOrbitalForce() {
 
 void ofxOrbitalForce::apply(std::shared_ptr<ofxParticle> p) {
 	if (isOn()) {
-		float distance = mPosition.distance(p.get()->getPosition());
+		float distance = mPosition.distance(p->getPosition());
 
 		if (distance < mMinDistance) {
 			distance = mMinDistance;
@@ -26,7 +26,7 @@ void ofxOrbitalForce::apply(std::shared_ptr<ofxParticle> p) {
 
 		float forceConstant = p->getMass() / distance;
 
-		ofVec3f unitVector = mPosition - p.get()->getPosition();
+		ofVec3f unitVector = mPosition - p->getPosition();
 		unitVector = ofVec3f(unitVector[1], -unitVector[0], 0);
 		unitVector.normalize();
 		
@@ -34,7 +34,7 @@ void ofxOrbitalForce::apply(std::shared_ptr<ofxParticle> p) {
 		unitVector[1] *= forceConstant*mScale[1];
 		unitVector[2] *= forceConstant*mScale[2];
 
-		p.get()->setVelocity(unitVector);
+		p->setVelocity(unitVector);
 	}
 }
 

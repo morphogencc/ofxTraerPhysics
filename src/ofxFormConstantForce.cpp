@@ -25,7 +25,7 @@ ofxFormConstantForce::~ofxFormConstantForce() {
 
 void ofxFormConstantForce::apply(std::shared_ptr<ofxParticle> p) {
 	if (isOn()) {
-		ofVec3f position = p.get()->getPosition();
+		ofVec3f position = p->getPosition();
 		ofVec3f radialPosition = ofVec3f(position[0] * position[0] + position[1] * position[1], atan2(position[0], position[1]), 0);
 		ofVec3f force = ofVec3f(0, 0, 0);
 

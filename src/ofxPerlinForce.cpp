@@ -18,7 +18,7 @@ ofxPerlinForce::~ofxPerlinForce() {
 
 void ofxPerlinForce::apply(std::shared_ptr<ofxParticle> p) {
 	if (isOn()) {
-		ofVec3f position = p.get()->getPosition();
+		ofVec3f position = p->getPosition();
 		ofVec3f force;
 		float vec[3];
 		vec[0] = 0.001*position[0];

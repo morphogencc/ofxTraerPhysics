@@ -14,20 +14,20 @@ void ofxRungeKuttaIntegrator::tick(float dt) {
 	mParticleSystem->applyForces();
 
 	for (auto p : mParticleSystem->getParticles()) {
-		if (!p.get()->isFree()) {
-			ofVec3f force = p.get()->getForces();
-			ofVec3f velocity = p.get()->getVelocity();
-			ofVec3f position = p.get()->getPosition();
+		if (!p->isFree()) {
+			ofVec3f force = p->getForces();
+			ofVec3f velocity = p->getVelocity();
+			ofVec3f position = p->getPosition();
 
 			//update position with last frame's velocity
 			position += velocity*dt;
 
 			//update velocity
-			force *= dt / p.get()->getMass();
+			force *= dt / p->getMass();
 			velocity += force;
 
-			p.get()->setVelocity(velocity);
-			p.get()->setPosition(position);
+			p->setVelocity(velocity);
+			p->setPosition(position);
 		}
 	}
 }

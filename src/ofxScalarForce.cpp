@@ -16,6 +16,6 @@ ofxScalarForce::~ofxScalarForce() {
 
 void ofxScalarForce::apply(std::shared_ptr<ofxParticle> p) {
 	if (isOn()) {
-		p.get()->addForce(mScale);
+		p->addForce(mScale);
 	}
 }

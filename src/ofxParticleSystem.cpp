@@ -75,21 +75,21 @@ void ofxParticleSystem::setDrag(float dx, float dy, float dz) {
 
 std::shared_ptr<ofxParticle> ofxParticleSystem::addParticle(float m) {
 	std::shared_ptr<ofxParticle> p = ofxParticle::make(m);
-	p.get()->setPosition(0, 0, 0);
+	p->setPosition(0, 0, 0);
 	mParticles.push_back(p);
 	return p;
 }
 
 std::shared_ptr<ofxParticle> ofxParticleSystem::addParticle(float m, float x, float y) {
 	std::shared_ptr<ofxParticle> p = ofxParticle::make(m);
-	p.get()->setPosition(x, y, 0);
+	p->setPosition(x, y, 0);
 	mParticles.push_back(p);
 	return p;
 }
 
 std::shared_ptr<ofxParticle> ofxParticleSystem::addParticle(float m, float x, float y, float z) {
 	std::shared_ptr<ofxParticle> p = ofxParticle::make(m);
-	p.get()->setPosition(x, y, z);
+	p->setPosition(x, y, z);
 	mParticles.push_back(p);
 	return p;
 }
@@ -109,18 +109,18 @@ std::vector<std::shared_ptr<ofxParticle> > ofxParticleSystem::getParticles() {
 void ofxParticleSystem::applyForces() {
 	for (auto f : mForces) {
 		for (auto p : mParticles) {
-			f.get()->apply(p);
+			f->apply(p);
 		}
 	}
 
 	for (auto s : mSprings) {
-		s.get()->apply();
+		s->apply();
 	}
 }
 
 void ofxParticleSystem::clearForces() {
 	for (auto p : mParticles) {
-		p.get()->clearForces();
+		p->clearForces();
 	}
 }
 
@@ -150,20 +150,20 @@ void ofxParticleSystem::tick() {
 }
 
 void ofxParticleSystem::tick(double dt) {
-	mIntegrator.get()->tick(dt);
+	mIntegrator->tick(dt);
 
 	//update time-dependent forces
 	for (auto f : mForces) {
-		f.get()->tick(dt);
+		f->tick(dt);
 	}
 	for (auto s : mSprings) {
-		s.get()->tick(dt);
+		s->tick(dt);
 	}
 
 	if (mBoundaryType == BoundaryType::BOX) {
 		for (auto p : mParticles) {
-			ofVec3f position = p.get()->getPosition();
-			ofVec3f velocity = p.get()->getVelocity();
+			ofVec3f position = p->getPosition();
+			ofVec3f velocity = p->getVelocity();
 			if (position[0] < mMinX) {
 				position[0] = mMinX;
 				velocity[0] *= -1;
@@ -185,7 +185,7 @@ void ofxParticleSystem::tick(double dt) {
 	}
 	else if (mBoundaryType == BoundaryType::PERIODIC) {
 		for (auto p : mParticles) {
-			ofVec3f position = p.get()->getPosition();
+			ofVec3f position = p->getPosition();
 			if (position[0] < mMinX) {
 				position[0] = mMaxX;
 			}

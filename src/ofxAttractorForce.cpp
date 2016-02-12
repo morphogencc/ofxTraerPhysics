@@ -18,7 +18,7 @@ ofxAttractorForce::~ofxAttractorForce() {
 
 void ofxAttractorForce::apply(std::shared_ptr<ofxParticle> p) {
 	if (isOn()) {
-		float distanceSq = mPosition.distance(p.get()->getPosition());
+		float distanceSq = mPosition.distance(p->getPosition());
 		distanceSq *= distanceSq;
 
 		if (distanceSq < mMinDistanceSq) {
@@ -30,14 +30,14 @@ void ofxAttractorForce::apply(std::shared_ptr<ofxParticle> p) {
 
 		float forceConstant = p->getMass() / distanceSq;
 
-		ofVec3f unitVector = mPosition - p.get()->getPosition();
+		ofVec3f unitVector = mPosition - p->getPosition();
 		unitVector.normalize();
 
 		unitVector[0] *= forceConstant*mScale[0];
 		unitVector[1] *= forceConstant*mScale[1];
 		unitVector[2] *= forceConstant*mScale[2];
 
-		p.get()->addForce(unitVector);
+		p->addForce(unitVector);
 	}
 }
 
