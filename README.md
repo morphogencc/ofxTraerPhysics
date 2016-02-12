@@ -1,6 +1,6 @@
 # ofxTraerPhysics
 
-A C++ port of the Processing traer physics library, designed specifically for openframeworks.
+A C++ port of the Processing traer physics library, designed specifically for openframeworks.  This addon focuses on ease of use over performance; you'll find that it's not nearly as fast as a lighter weight system might be.  However, the hope is that it will serve as a useful addon for beginners or for people who just need to draft ideas quickly.
 
 
 ## Requirements
