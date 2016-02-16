@@ -41,13 +41,6 @@ void ofxSeparateForce::apply(std::shared_ptr<ofxParticle> p) {
 		if (distance < mDesiredSeparation && distance > 0) {
 			ofVec3f difference = p->getPosition() - particle->getPosition();
 			//difference.normalize();
-			if (distance < mMinDistance) {
-				distance = mMinDistance;
-			}
-			else if (distance > mMaxDistance) {
-				distance = mVeryFarAway;
-			}
-
 			difference /= distance; // weight the force linearly by distance
 			steeringVector += difference;
 		}

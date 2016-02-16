@@ -35,47 +35,45 @@ namespace ofxTraerPhysics {
 			mTime += dt;
 		}
 
-		void setMinDistance(float distance) {
-			mMinDistance = distance;
-			mMinDistanceSq = distance*distance;
+		void setMinForce(float magnitude) {
+			mMinForce = magnitude;
 		}
 
-		void setMaxDistance(float distance) {
-			mMaxDistance = distance;
-			mMaxDistanceSq = distance*distance;
+		void setMaxForce(float magnitude) {
+			mMaxForce = magnitude;
 		}
+
 
 	protected:
 		ofxForce(float f) {
 			mIsOn = true;
 			setScale(f, f, f);
 			mTime = 0;
-			mMinDistance = 25;
-			mMaxDistance = 100;
-			mMinDistanceSq = mMinDistance*mMinDistance;
-			mMaxDistanceSq = mMaxDistance*mMaxDistance;
-			mVeryFarAway = 1000000000000000;
+			mMinForce = 0.1;
+			mMaxForce = 1000;
 		};
 
-		ofxForce(float fx, float fy, float fz) {
-			mIsOn = true;
+		ofxForce(float fx, float fy, float fz) : ofxForce(1.0) {
 			setScale(fx, fy, fz);
-			mTime = 0;
-			mMinDistance = 25;
-			mMaxDistance = 100;
-			mMinDistanceSq = mMinDistance*mMinDistance;
-			mMaxDistanceSq = mMaxDistance*mMaxDistance;
-			mVeryFarAway = 1000000000000000;
 		};
+
+		float clampForce(float magnitude) {
+			if (magnitude > mMaxForce) {
+				return mMaxForce;
+			}
+			else if (magnitude < mMinForce) {
+				return mMinForce;
+			}
+			else {
+				return magnitude;
+			}
+		}
 
 		ofVec3f mScale;
 		bool mIsOn;
 		double mTime;
-		float mMinDistance;
-		float mMinDistanceSq;
-		float mMaxDistance;
-		float mMaxDistanceSq;
-		float mVeryFarAway;
+		float mMinForce;
+		float mMaxForce;
 	};
 
 }

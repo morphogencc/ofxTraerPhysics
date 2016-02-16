@@ -21,14 +21,8 @@ void ofxAttractorForce::apply(std::shared_ptr<ofxParticle> p) {
 		float distanceSq = mPosition.distance(p->getPosition());
 		distanceSq *= distanceSq;
 
-		if (distanceSq < mMinDistanceSq) {
-			distanceSq = mMinDistanceSq;
-		}
-		else if (distanceSq > mMaxDistanceSq) {
-			distanceSq = mVeryFarAway;
-		}
-
 		float forceConstant = p->getMass() / distanceSq;
+		forceConstant = clampForce(forceConstant);
 
 		ofVec3f unitVector = mPosition - p->getPosition();
 		unitVector.normalize();
